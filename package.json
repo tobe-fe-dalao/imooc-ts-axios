@@ -1,6 +1,6 @@
 {
   "name": "imooc-ts-axios",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "",
   "keywords": [],
   "main": "dist/imooc-ts-axios.umd.js",
@@ -12,7 +12,7 @@
   "author": "yanxinchen1990 <yxc900920@163.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:YanXinChen1990/imooc-ts-axios.git"
   },
   "license": "MIT",
   "engines": {

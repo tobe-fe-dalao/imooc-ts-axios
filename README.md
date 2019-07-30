@@ -6,7 +6,7 @@
 
 [课程地址](https://coding.imooc.com/class/330.html)
 
-[代码地址](https://github.com/YanXinChen1990/imooc-ts-axios)
+[代码 GitHub 仓库](https://github.com/YanXinChen1990/imooc-ts-axios)
 
 [TypeScript 官网（中文）](https://www.tslang.cn/)
 
@@ -16,4 +16,4 @@
 
 [VuePress](https://vuepress.vuejs.org/zh/)
 
-[快速创建一个TypeScript项目](https://github.com/alexjoverm/typescript-library-starter)
+[快速创建一个 TypeScript 项目](https://github.com/alexjoverm/typescript-library-starter)
