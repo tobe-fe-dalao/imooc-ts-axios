@@ -229,7 +229,7 @@ function getRandomPet () {
   return Math.random() > 0.5 ? new Bird() : new Fish()
 }
 
-let pet = getRandomPet()
+let pet = getRandomPet();
 
 if (pet instanceof Bird) {
   pet.fly()
@@ -246,10 +246,10 @@ TypeScript 具有两种特殊的类型，`null` 和 `undefined`，它们分别�
 `--strictNullChecks` 标记可以解决此错误：当你声明一个变量时，它不会自动地包含 `null` 或 `undefined`。 你可以使用联合类型明确的包含它们：
 
 ```typescript
-let s = 'foo'
-s = null // 错误, 'null'不能赋值给'string'
-let sn: string | null = 'bar'
-sn = null // 可以
+let s = 'foo';
+s = null; // 错误, 'null'不能赋值给'string'
+let sn: string | null = 'bar';
+sn = null; // 可以
 
 sn = undefined // error, 'undefined'不能赋值给'string | null'
 ```
@@ -264,25 +264,25 @@ sn = undefined // error, 'undefined'不能赋值给'string | null'
 function f(x: number, y?: number) {
   return x + (y || 0)
 }
-f(1, 2)
-f(1)
-f(1, undefined)
-f(1, null) // error, 'null' 不能赋值给 'number | undefined'
+f(1, 2);
+f(1);
+f(1, undefined);
+f(1, null); // error, 'null' 不能赋值给 'number | undefined'
 ```
 
 可选属性也会有同样的处理：
 
 ```typescript
 class C {
-  a: number
-  b?: number
+  a: number;
+  b?: number;
 }
-let c = new C()
-c.a = 12
-c.a = undefined // error, 'undefined' 不能赋值给 'number'
-c.b = 13
-c.b = undefined // ok
-c.b = null // error, 'null' 不能赋值给 'number | undefined'
+let c = new C();
+c.a = 12;
+c.a = undefined; // error, 'undefined' 不能赋值给 'number'
+c.b = 13;
+c.b = undefined; // ok
+c.b = null; // error, 'null' 不能赋值给 'number | undefined'
 ```
 
 ### 类型保护和类型断言
@@ -314,7 +314,7 @@ function broken(name: string | null): string {
   function postfix(epithet: string) {
     return name.charAt(0) + '.  the ' + epithet // error, 'name' 可能为 null
   }
-  name = name || 'Bob'
+  name = name || 'Bob';
   return postfix('great')
 }
 
@@ -322,7 +322,7 @@ function fixed(name: string | null): string {
   function postfix(epithet: string) {
     return name!.charAt(0) + '.  the ' + epithet // ok
   }
-  name = name || 'Bob'
+  name = name || 'Bob';
   return postfix('great')
 }
 
