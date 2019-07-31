@@ -87,6 +87,9 @@ axios({
   }
 });
 
+/**
+ * 发送json对象的post请求
+ */
 axios({
   method: "post",
   url: "/base/post",
@@ -96,8 +99,36 @@ axios({
   }
 });
 
+/**
+ * 发送Buffer的post请求
+ */
 axios({
   method: "post",
   url: "/base/buffer",
   data: new Int32Array([21, 31])
+});
+
+/**
+ * 设置headers的post请求
+ */
+axios({
+  method: "post",
+  url: "/base/post",
+  headers: {
+    "content-type": "application/json",
+    "Accept": "application/json, text/plain, */*"
+  },
+  data: {
+    a: 1,
+    b: 2
+  }
+});
+
+/**
+ * 发送FormData的post请求
+ */
+axios({
+  method: "post",
+  url: "/base/post",
+  data: new URLSearchParams("q=URLUtils.searchParams&topic=api")
 });
