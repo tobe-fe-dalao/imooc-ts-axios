@@ -8,7 +8,7 @@ function greeter (person) {
   return 'Hello, ' + person
 }
 
-let user = 'Yee';
+let user = 'Yee'
 
 console.log(greeter(user))
 ```
@@ -46,7 +46,7 @@ function greeter (person: string) {
   return 'Hello, ' + person
 }
 
-let user = 'Yee';
+let user = 'Yee'
 
 console.log(greeter(user))
 ```
@@ -58,7 +58,7 @@ function greeter (person: string) {
   return 'Hello, ' + person
 }
 
-let user = [0, 1, 2];
+let user = [0, 1, 2]
 
 console.log(greeter(user))
 ```
@@ -90,7 +90,7 @@ function greeter (person: Person) {
 let user = {
   firstName: 'Yee',
   lastName: 'Huang'
-};
+}
 
 console.log(greeter(user))
 ```
@@ -99,19 +99,19 @@ console.log(greeter(user))
 
 最后，让我们使用类来改写这个例子。 TypeScript 支持 JavaScript 的新特性，比如支持基于类的面向对象编程。
 
-让我们创建一个 `Student` 类，它带有一个构造函数和一些公共字段。因为类的字段包含了接口所需要的字段，所以他们能很好的兼容。
+让我们创建一个 `User` 类，它带有一个构造函数和一些公共字段。因为类的字段包含了接口所需要的字段，所以他们能很好的兼容。
 
 还要注意的是，我在类的声明上会注明所有的成员变量，这样比较一目了然。
 
 ```typescript
 class User {
-  fullName: string;
-  firstName: string;
-  lastName: string;
+  fullName: string
+  firstName: string
+  lastName: string
 
   constructor (firstName: string, lastName: string) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.firstName = firstName
+    this.lastName = lastName
     this.fullName = firstName + ' ' + lastName
   }
 }
@@ -125,7 +125,7 @@ function greeter (person: Person) {
   return 'Hello, ' + person.firstName + ' ' + person.lastName
 }
 
-let user = new User('Yee', 'Huang');
+let user = new User('Yee', 'Huang')
 
 console.log(greeter(user))
 ```

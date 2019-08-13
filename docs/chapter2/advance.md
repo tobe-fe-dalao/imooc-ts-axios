@@ -8,14 +8,12 @@
 
 ```typescript
 function extend<T, U> (first: T, second: U): T & U {
-  let result = {} as T & U;
+  let result = {} as T & U
   for (let id in first) {
-    if(first.hasOwnProperty(id)){
-      result[id] = first[id] as any
-    }
+    result[id] = first[id] as any
   }
   for (let id in second) {
-    if (!result.hasOwnProperty(id) && second.hasOwnProperty(id)) {
+    if (!result.hasOwnProperty(id)) {
       result[id] = second[id] as any
     }
   }
@@ -37,8 +35,8 @@ class ConsoleLogger implements Loggable {
   }
 }
 
-var jim = extend(new Person('Jim'), new ConsoleLogger());
-var n = jim.name;
+var jim = extend(new Person('Jim'), new ConsoleLogger())
+var n = jim.name
 jim.log()
 ```
 
@@ -96,9 +94,9 @@ function getSmallPet(): Fish | Bird {
   // ...
 }
 
-let pet = getSmallPet();
-pet.layEggs(); // okay
-pet.swim();    // error
+let pet = getSmallPet()
+pet.layEggs() // okay
+pet.swim()    // error
 ```
 
 这里的联合类型可能有点复杂：如果一个值的类型是 `A | B`，我们能够确定的是它包含了 `A` 和 `B` 中共有的成员。这个例子里，`Fish` 具有一个 `swim` 方法，我们不能确定一个 `Bird | Fish` 类型的变量是否有 `swim`方法。 如果变量在运行时是 `Bird` 类型，那么调用 `pet.swim()` 就出错了。
@@ -108,7 +106,7 @@ pet.swim();    // error
 联合类型适合于那些值可以为不同类型的情况。 但当我们想确切地了解是否为 `Fish` 或者是 `Bird` 时怎么办？ JavaScript 里常用来区分这 2 个可能值的方法是检查成员是否存在。如之前提及的，我们只能访问联合类型中共同拥有的成员。
 
 ```typescript
-let pet = getSmallPet();
+let pet = getSmallPet()
 
 // 每一个成员访问都会报错
 if (pet.swim) {
@@ -121,7 +119,7 @@ if (pet.swim) {
 为了让这段代码工作，我们要使用类型断言：
 
 ```typescript
-let pet = getSmallPet();
+let pet = getSmallPet()
 
 if ((pet as Fish).swim) {
   (pet as Fish).swim()
@@ -229,7 +227,7 @@ function getRandomPet () {
   return Math.random() > 0.5 ? new Bird() : new Fish()
 }
 
-let pet = getRandomPet();
+let pet = getRandomPet()
 
 if (pet instanceof Bird) {
   pet.fly()
@@ -246,10 +244,10 @@ TypeScript 具有两种特殊的类型，`null` 和 `undefined`，它们分别�
 `--strictNullChecks` 标记可以解决此错误：当你声明一个变量时，它不会自动地包含 `null` 或 `undefined`。 你可以使用联合类型明确的包含它们：
 
 ```typescript
-let s = 'foo';
-s = null; // 错误, 'null'不能赋值给'string'
-let sn: string | null = 'bar';
-sn = null; // 可以
+let s = 'foo'
+s = null // 错误, 'null'不能赋值给'string'
+let sn: string | null = 'bar'
+sn = null // 可以
 
 sn = undefined // error, 'undefined'不能赋值给'string | null'
 ```
@@ -264,25 +262,25 @@ sn = undefined // error, 'undefined'不能赋值给'string | null'
 function f(x: number, y?: number) {
   return x + (y || 0)
 }
-f(1, 2);
-f(1);
-f(1, undefined);
-f(1, null); // error, 'null' 不能赋值给 'number | undefined'
+f(1, 2)
+f(1)
+f(1, undefined)
+f(1, null) // error, 'null' 不能赋值给 'number | undefined'
 ```
 
 可选属性也会有同样的处理：
 
 ```typescript
 class C {
-  a: number;
-  b?: number;
+  a: number
+  b?: number
 }
-let c = new C();
-c.a = 12;
-c.a = undefined; // error, 'undefined' 不能赋值给 'number'
-c.b = 13;
-c.b = undefined; // ok
-c.b = null; // error, 'null' 不能赋值给 'number | undefined'
+let c = new C()
+c.a = 12
+c.a = undefined // error, 'undefined' 不能赋值给 'number'
+c.b = 13
+c.b = undefined // ok
+c.b = null // error, 'null' 不能赋值给 'number | undefined'
 ```
 
 ### 类型保护和类型断言
@@ -314,7 +312,7 @@ function broken(name: string | null): string {
   function postfix(epithet: string) {
     return name.charAt(0) + '.  the ' + epithet // error, 'name' 可能为 null
   }
-  name = name || 'Bob';
+  name = name || 'Bob'
   return postfix('great')
 }
 
@@ -322,7 +320,7 @@ function fixed(name: string | null): string {
   function postfix(epithet: string) {
     return name!.charAt(0) + '.  the ' + epithet // ok
   }
-  name = name || 'Bob';
+  name = name || 'Bob'
   return postfix('great')
 }
 

@@ -17,3 +17,9 @@
 [VuePress](https://vuepress.vuejs.org/zh/)
 
 [快速创建一个 TypeScript 项目](https://github.com/alexjoverm/typescript-library-starter)
+
+启动文档页面
+> vuepress dev docs
+
+运行 Demo
+> npm run dev
