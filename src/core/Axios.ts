@@ -47,10 +47,12 @@ export default class Axios {
     ];
 
     this.interceptors.request.forEach(interceptor => {
+      // 请求拦截器执行顺序与添加顺序相反
       chain.unshift(interceptor);
     });
 
     this.interceptors.response.forEach(interceptor => {
+      // 响应拦截器执行顺序与添加顺序相同
       chain.push(interceptor);
     });
 
