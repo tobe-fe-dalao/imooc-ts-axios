@@ -22,8 +22,8 @@ export interface AxiosRequestConfig {
   headers?: any; // 请求头
   responseType?: XMLHttpRequestResponseType; // 响应数据类型
   timeout?: number; // 请求超时时间
-  transformRequest: AxiosTransformer | AxiosTransformer[];
-  transformResponse: AxiosTransformer | AxiosTransformer[];
+  transformRequest?: AxiosTransformer | AxiosTransformer[];
+  transformResponse?: AxiosTransformer | AxiosTransformer[];
 
   [propName: string]: any;
 }
