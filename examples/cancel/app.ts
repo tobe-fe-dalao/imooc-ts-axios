@@ -7,32 +7,35 @@ axios.get('/cancel/get', {
   cancelToken: source.token
 }).catch(e => {
   if (axios.isCancel(e)) {
-    console.log('Request Canceled, ' + e.message);
+    console.log('1. Request canceled, ' + e.message);
   }
 });
 
 setTimeout(() => {
-  source.cancel('Operation canceled by the user.');
+  source.cancel('2. Operation canceled by the user.');
 
-  axios.post('/cancel/post', { a: 1 }, {
-    cancelToken: source.token
-  }).catch(e => {
-    console.log(e.message);
-  });
+  setTimeout(() => {
+    axios.post('/cancel/post', { a: 1 }, {
+      cancelToken: source.token
+    }).catch(e => {
+      console.log(e.message);
+    });
+  }, 100);
+
 }, 100);
 
 let cancel: Canceler;
 
-axios.get('/cancel/get', {
-  cancelToken: new CancelToken(c => {
-    cancel = c;
-  })
-}).catch(e => {
-  if (axios.isCancel(e)) {
-    console.log('Request canceled');
-  }
-});
-
 setTimeout(() => {
-  cancel();
-}, 200);
+  axios.get('/cancel/get', {
+    cancelToken: new CancelToken(c => {
+      cancel = c;
+    })
+  }).catch(e => {
+    if (axios.isCancel(e)) {
+      console.log('3. Request canceled');
+    }
+  });
+}, 150);
+
+setTimeout(() => cancel(), 200);
