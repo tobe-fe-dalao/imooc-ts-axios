@@ -5,3 +5,4 @@ dist
 .rpt2_cache
 coverage
 *.log
+upload-file/*
