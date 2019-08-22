@@ -33,6 +33,7 @@ export interface AxiosRequestConfig {
   auth?: AxiosBasicCredentials; // HTTP 授权
   validateStatus?: (status: number) => boolean; // 自定义合法状态码
   paramsSerializer?: (params: any) => string; // 自定义参数序列化
+  baseURL?: string;
 
   [propName: string]: any;
 }
