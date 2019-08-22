@@ -1,6 +1,7 @@
 import axios, { AxiosError } from '../../src/index';
 import 'nprogress/nprogress.css';
 import NProgress from 'nprogress';
+import qs from 'qs';
 
 /**
  * CORS
@@ -111,18 +112,53 @@ import NProgress from 'nprogress';
 /**
  * 自定义状态码校验规则
  */
-axios.get('/more/304').then(res => {
+// axios.get('/more/304').then(res => {
+//   console.log(res);
+// }).catch((e: AxiosError) => {
+//   console.log(e.message);
+// });
+//
+// axios.get('/more/304', {
+//   validateStatus(status) {
+//     return status >= 200 && status < 400;
+//   }
+// }).then(res => {
+//   console.log(res);
+// }).catch((e: AxiosError) => {
+//   console.log(e.message);
+// });
+
+/**
+ * 自定义参数序列化
+ */
+axios.get('/more/get', {
+  params: new URLSearchParams('a=b&c=d')
+}).then(res => {
   console.log(res);
-}).catch((e: AxiosError) => {
-  console.log(e.message);
 });
 
-axios.get('/more/304', {
-  validateStatus(status) {
-    return status >= 200 && status < 400;
+axios.get('/more/get', {
+  params: {
+    a: 1,
+    b: 2,
+    c: ['a', 'b', 'c']
   }
 }).then(res => {
   console.log(res);
-}).catch((e: AxiosError) => {
-  console.log(e.message);
+});
+
+const instance = axios.create({
+  paramsSerializer(params) {
+    return qs.stringify(params, { arrayFormatL: 'brackets' });
+  }
+});
+
+instance.get('/more/get', {
+  params: {
+    a: 1,
+    b: 2,
+    c: ['a', 'b', 'c']
+  }
+}).then(res => {
+  console.log(res);
 });
