@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('./webpack.config');
+const atob = require('atob');
 
 require('./server2');
 
@@ -171,5 +172,19 @@ function registerMoreRouter() {
   router.post('/more/upload', function (req, res) {
     console.log(req.body, req.files);
     res.end('upload success!');
+  });
+
+  router.post('/more/post', function (req, res) {
+    const auth = req.headers.authorization;
+    const [type, credentials] = auth.split(' ');
+    console.log(atob(credentials));
+    const [username, password] = atob(credentials).split(':');
+
+    if (type === 'Basic' && username === 'Yee' && password === '123456') {
+      res.json(req.body);
+    } else {
+      res.status(401);
+      res.end('UnAuthorization');
+    }
   });
 }
