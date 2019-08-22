@@ -22,7 +22,15 @@ const defaults: AxiosRequestConfig = {
     function(data: any): any {
       return transformResponse(data);
     }
-  ]
+  ],
+
+  /**
+   * 合法状态码校验配置
+   * @param status
+   */
+  validateStatus(status: number): boolean {
+    return status >= 200 && status < 300;
+  }
 };
 
 const methodsNoData = ['delete', 'get', 'head', 'options'];

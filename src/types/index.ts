@@ -31,6 +31,7 @@ export interface AxiosRequestConfig {
   onDownloadProgress?: (e: ProgressEvent) => void; // 下载进度监控
   onUploadProgress?: (e: ProgressEvent) => void; // 上传进度监控
   auth?: AxiosBasicCredentials; // HTTP 授权
+  validateStatus?: (status: number) => boolean; // 自定义合法状态码
 
   [propName: string]: any;
 }
