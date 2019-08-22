@@ -166,12 +166,47 @@ import qs from 'qs';
 /**
  * BaseURL
  */
-const instance = axios.create({
-  baseURL: 'http://img.mukewang.com/'
-});
+// const instance = axios.create({
+//   baseURL: 'http://img.mukewang.com/'
+// });
+//
+// // 请求相对地址会自动加上BaseURL
+// instance.get('5cc01a7b0001a33718720632.jpg');
+//
+// // 请求绝对地址BaseURL会自动失效
+// instance.get('http://img.mukewang.com/5cc01a7b0001a33718720632.jpg');
 
-// 请求相对地址会自动加上BaseURL
-instance.get('5cc01a7b0001a33718720632.jpg');
+/**
+ * 扩展静态方法
+ */
+function getA() {
+  return axios.get('/more/A');
+}
 
-// 请求绝对地址BaseURL会自动失效
-instance.get('http://img.mukewang.com/5cc01a7b0001a33718720632.jpg');
+function getB() {
+  return axios.get('/more/B');
+}
+
+axios.all([getA(), getB()])
+  .then(axios.spread(function (resA, resB) {
+    console.log(resA);
+    console.log(resB);
+  }));
+
+axios.all([getA(), getB()])
+  .then(([resA, resB]) => {
+    console.log(resA);
+    console.log(resB);
+  });
+
+const fakeConfig = {
+  baseURL: 'https://www.baidu.com/',
+  url: '/user/12345',
+  params: {
+    idClient: 1,
+    idTest: 2,
+    testString: 'thisIsATest'
+  }
+};
+
+console.log(axios.getUri(fakeConfig));
