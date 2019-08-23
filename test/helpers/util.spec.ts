@@ -6,7 +6,6 @@ import {
   extend,
   deepMerge
 } from '../../src/helpers/util';
-import { test } from 'shelljs';
 
 describe('helpers:util', () => {
   describe('isXX', () => {
@@ -61,7 +60,7 @@ describe('helpers:util', () => {
 
       expect(typeof a.foo).toBe('undefined');
       expect(typeof a.bar).toBe('undefined');
-      expect(typeof b.foo).toBe('undefined');
+      expect(typeof b.bar).toBe('undefined');
       expect(typeof c.foo).toBe('undefined');
     });
 
